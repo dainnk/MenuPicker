@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title> 게시글 작성하기 </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        .text-primary {
+            color: #28a745 !important;
+        }
+
+        .btn-primary {
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+
+        .btn-primary:hover {
+            background-color: #218838;
+            border-color: #1e7e34;
+        }
+
+        .form-control:focus {
+            border-color: #28a745;
+            box-shadow: 0 0 0 0.25rem rgba(40, 167, 69, 0.25);
+        }
+    </style>
+
+</head>
+<body>
+
+<div class="container">
+    <div class="custom-card mx-auto mt-5" style="max-width:600px;">
+        <h2 class="fw-bold text-primary mb-4">🥄 메뉴 고민 해결 글 작성</h2>
+        <form action="/menus/create" method="post">
+            <div class="mb-3">
+                <label for="titleInput" class="form-label">제목</label>
+                <input type="text" class="form-control" id="titleInput" name="title" placeholder="예) 오늘 뭐 먹을까?" required>
+            </div>
+            <div class="mb-3">
+                <label for="contentTextarea" class="form-label">설명</label>
+                <textarea class="form-control" id="contentTextarea" name="content" placeholder="예) 짜장면 vs 짬뽕" rows="3"></textarea>
+            </div> <br>
+            <div>
+                <a href="/menus" class="btn btn-secondary me-2">목록으로</a>
+                <button type="submit" class="btn btn-primary">등록하기</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

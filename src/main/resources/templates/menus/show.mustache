@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title> 게시글 상세보기 </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f0fff4;
+        }
+
+        .custom-card {
+            width: 100%;
+            max-width: 1000px;
+            min-height: 500px;
+            background-color: #ffffff;
+            border-radius: 16px;
+            padding: 30px;
+            margin-top: 60px;
+            box-shadow: 0 4px 12px rgba(40, 167, 69, 0.2);
+        }
+
+        .text-primary {
+            color: #28a745 !important;
+        }
+
+        .btn-primary {
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+
+        .btn-primary:hover {
+            background-color: #218838;
+            border-color: #1e7e34;
+        }
+
+        .table th {
+            width: 100px;
+            background-color: #e9f7ef;
+        }
+
+        .btn-warning {
+            background-color: #ffc107;
+            border-color: #ffc107;
+        }
+
+        .btn-warning:hover {
+            background-color: #e0a800;
+            border-color: #d39e00;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+            border-color: #dc3545;
+        }
+
+        .btn-danger:hover {
+            background-color: #c82333;
+            border-color: #bd2130;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container d-flex flex-column align-items-center">
+    <div class="custom-card">
+        <h2 class="fw-bold text-primary mb-4 text-center">글 상세보기</h2>
+        <table class="table table-bordered mb-4">
+            <tbody>
+            <tr>
+                <th scope="row">제목</th>
+                <td>{{menus.title}}</td>
+            </tr>
+            <tr>
+                <th scope="row">설명</th>
+                <td style="white-space: pre-wrap;">{{menus.content}}</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="d-flex justify-content-end">
+            <a href="/menus" class="btn btn-primary me-2">목록으로</a>
+            <a href="/menus/{{menus.id}}/edit" class="btn btn-warning me-2">수정</a>
+            <a href="/menus/{{menus.id}}/delete" class="btn btn-danger"
+               onclick="return confirm('삭제하시겠습니까?');">삭제</a>
+        </div>
+
+        <br>
+        <div class="mt-4">
+            <h4 class="text-primary">댓글 목록</h4>
+            {{#commentList}}
+                <div class="card mb-2">
+                    <div class="card-body">
+                        <p class="card-text" style="white-space: pre-wrap;">{{text}}</p>
+                    </div>
+                </div>
+            {{/commentList}}
+            {{^commentList}}
+                <p>아직 등록된 댓글이 없습니다. 첫 댓글을 남겨주세요!</p>
+            {{/commentList}}
+        </div>
+        <br>
+
+        <!-- 댓글 작성 폼 (이전과 동일) -->
+        <div class="card mb-3">
+            <div class="card-body">
+                <form action="/menus/{{id}}/comments" method="post">
+                    <div class="mb-3">
+                        <label for="commentContent" class="form-label">댓글 내용</label>
+                        <textarea class="form-control form-control-sm" id="commentContent" name="text" rows="3" required></textarea>
+                    </div>
+                    <div class="text-end">
+                        <button type="submit" class="btn btn-primary btn-sm">댓글 등록</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+    </div>
+
+</body>
+</html>

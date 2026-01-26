@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title> 식사 메뉴 고민 해결 게시판 </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        .text-primary {
+            color: #28a745 !important;
+        }
+
+        .btn-primary {
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+
+        .btn-primary:hover {
+            background-color: #218838;
+            border-color: #1e7e34;
+        }
+
+        .btn-outline-primary {
+            color: #28a745;
+            border-color: #28a745;
+        }
+
+        .btn-outline-primary:hover {
+            background-color: #28a745;
+            border-color: #28a745;
+            color: white;
+        }
+    </style>
+
+</head>
+<body>
+
+<div class="container">
+    <div class="custom-card mx-auto mt-5" style="max-width: 800px;">
+        <h2 class="fw-bold text-primary mb-4">🍚 식사 메뉴 고민 해결 게시글 목록</h2>
+
+        {{#msg}}
+            <div class="alert alert-success" role="alert">
+                {{msg}}
+            </div>
+        {{/msg}}
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>제목</th>
+                <th>상세보기</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {{#menuList}}
+                <tr>
+                    <td class="fw-semibold">{{id}}</td>
+                    <td class="text-start">{{title}}</td>
+
+                    <td>
+                        <a href="/menus/{{id}}" class="btn btn-outline-primary btn-sm px-3">보기</a>
+                    </td>
+                </tr>
+            {{/menuList}}
+
+            {{^menuList}}
+                <tr>
+                    <td colspan="4" class="text-center text-muted py-5">아직 등록된 메뉴 추천이 없습니다</td>
+                </tr>
+            {{/menuList}}
+            </tbody>
+
+        </table>
+        <br>
+        <div class="d-flex justify-content-end mt-4">
+            <a href="/menus/new" class="btn btn-primary btn-lg shadow-sm">글 작성하기</a>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>
